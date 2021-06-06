@@ -36,3 +36,12 @@ Treci deo cini alatku za resavanje problema nad grafovima zahteva instalaciju Qt
     termcolor za boje u terminalu i lepsi prikaz
     graphviz za crtanje grafikona kod metoda odsecanja
     
+  Primer terminala:  
+  ![Test Image 4](https://github.com/Mihajlo-Ilic/DiskretneStrukture3/blob/main/slike/slika1.png)  
+  
+  Primer Graphviza za odsecanje:  
+  ![Test Image 4](https://github.com/Mihajlo-Ilic/DiskretneStrukture3/blob/main/slike/slika2.png) 
+  
+  Primer rada alata za grafove:  
+  ![Test Image 4](https://github.com/Mihajlo-Ilic/DiskretneStrukture3/blob/main/slike/Animation.gif) 
+    
