@@ -30,11 +30,11 @@ Treci deo cini alatku za resavanje problema nad grafovima zahteva instalaciju Qt
    Koriscene biblioteke:  
    _____________________  
     cpp compiler mingw  
-    qt paket za graficki interfejs kod alata za grafove  
+    qt paket za graficki interfejs kod alata za grafove link:https://www.qt.io/  
     python3:  
-    numpy za linearnu algebru  
-    termcolor za boje u terminalu i lepsi prikaz
-    graphviz za crtanje grafikona kod metoda odsecanja
+    numpy za linearnu algebru komanda: pip3 install numpy  
+    termcolor za boje u terminalu i lepsi prikaz komanda: pip3 install termcolor  
+    graphviz za crtanje grafikona kod metoda odsecanja link:https://graphviz.org/
     
   Primer terminala:  
   ![Test Image 4](https://github.com/Mihajlo-Ilic/DiskretneStrukture3/blob/main/slike/slika1.png)  
