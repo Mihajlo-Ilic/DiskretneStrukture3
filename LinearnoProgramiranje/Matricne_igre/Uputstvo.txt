@@ -1,0 +1,11 @@
+Program se pokrece sa argumentima:
+python3 mat_igre.py putanja_do_fajla [opcioni]dom
+
+dom argument oznacava da li ce se koristiti ili ne metod dominacije
+
+u fajlu se ocekuje samo matrica A
+npr:
+2 1 2 3
+3 1.5 1 2
+2 2 1 1
+1 1 1 1

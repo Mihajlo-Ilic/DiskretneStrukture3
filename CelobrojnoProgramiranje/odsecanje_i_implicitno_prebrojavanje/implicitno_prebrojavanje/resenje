@@ -1,0 +1,80 @@
+// Implicitno prebrojavanje
+graph {
+	nodesep=1
+	0 [label=0 style=bold]
+	1 [label=1 style=bold]
+	2 [label=2 style=bold]
+	3 [label="nejednacina 1 nezadovoljena
+19.0 <= 15.0
+[1, 1, 1, 0]" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	4 [label=4 style=bold]
+	5 [label="nejednacina 1 nezadovoljena
+18.0 <= 15.0
+[1, 1, 0, 1]" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	6 [label="f = 20.0
+[1, 1, 0, 0]" shape=box style=bold]
+	7 [label=7 style=bold]
+	8 [label=8 style=bold]
+	9 [label="nejednacina 1 nezadovoljena
+17.0 <= 15.0
+[1, 0, 1, 1]" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	10 [label="f = 19.0
+[1, 0, 1, 0]" shape=box style=bold]
+	11 [label=11 style=bold]
+	12 [label="f = 18.0
+[1, 0, 0, 1]" shape=box style=bold]
+	13 [label="f = 12.0
+[1, 0, 0, 0]" shape=box style=bold]
+	14 [label=14 style=bold]
+	15 [label=15 style=bold]
+	16 [label=16 style=bold]
+	17 [label="f = 21.0
+[0, 1, 1, 1]" shape=box style=bold]
+	18 [label="f = 15.0
+[0, 1, 1, 0]" shape=box style=bold]
+	19 [label=19 style=bold]
+	20 [label="f = 14.0
+[0, 1, 0, 1]" shape=box style=bold]
+	21 [label="f = 8.0
+[0, 1, 0, 0]" shape=box style=bold]
+	22 [label=22 style=bold]
+	23 [label=23 style=bold]
+	24 [label="f = 13.0
+[0, 0, 1, 1]" shape=box style=bold]
+	25 [label="f = 7.0
+[0, 0, 1, 0]" shape=box style=bold]
+	26 [label=26 style=bold]
+	27 [label="f = 6.0
+[0, 0, 0, 1]" shape=box style=bold]
+	28 [label="f = 0.0
+[0, 0, 0, 0]" shape=box style=bold]
+	0 -- 1 [label="x0 = 1"]
+	1 -- 2 [label="x1 = 1"]
+	2 -- 3 [label="x2 = 1"]
+	2 -- 4 [label="x2 = 0"]
+	4 -- 5 [label="x3 = 1"]
+	4 -- 6 [label="x3 = 0"]
+	1 -- 7 [label="x1 = 0"]
+	7 -- 8 [label="x2 = 1"]
+	8 -- 9 [label="x3 = 1"]
+	8 -- 10 [label="x3 = 0"]
+	7 -- 11 [label="x2 = 0"]
+	11 -- 12 [label="x3 = 1"]
+	11 -- 13 [label="x3 = 0"]
+	0 -- 14 [label="x0 = 0"]
+	14 -- 15 [label="x1 = 1"]
+	15 -- 16 [label="x2 = 1"]
+	16 -- 17 [label="x3 = 1"]
+	16 -- 18 [label="x3 = 0"]
+	15 -- 19 [label="x2 = 0"]
+	19 -- 20 [label="x3 = 1"]
+	19 -- 21 [label="x3 = 0"]
+	14 -- 22 [label="x1 = 0"]
+	22 -- 23 [label="x2 = 1"]
+	23 -- 24 [label="x3 = 1"]
+	23 -- 25 [label="x3 = 0"]
+	22 -- 26 [label="x2 = 0"]
+	26 -- 27 [label="x3 = 1"]
+	26 -- 28 [label="x3 = 0"]
+	17 [fillcolor="#146321" fontcolor=white style="filled,bold"]
+}

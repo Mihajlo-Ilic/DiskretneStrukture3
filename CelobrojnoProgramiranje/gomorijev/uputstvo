@@ -1,0 +1,7 @@
+program se pokrece sa python3 ./gomori.py putanja_do_testa
+
+potrebno je da se instalira termcolor za pajton
+to moze sa pokretanjem u terminalu
+pip3 install termcolor
+
+posto se koriste boje za ispis radi lakseg pregleda

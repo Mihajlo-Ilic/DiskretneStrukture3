@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>pause.png</file>
+        <file>animacija.png</file>
+        <file>stop.png</file>
+        <file>select.png</file>
+        <file>ivice.png</file>
+        <file>play.jpg</file>
+        <file>cvorovi.png</file>
+        <file>list.png</file>
+        <file>matrix.png</file>
+        <file>Open.png</file>
+        <file>delete.png</file>
+        <file>desno.png</file>
+        <file>levo.png</file>
+        <file>neusmeren.png</file>
+        <file>ocisti.png</file>
+        <file>bitmap.png</file>
+        <file>tegici.png</file>
+        <file>protok.png</file>
+    </qresource>
+</RCC>

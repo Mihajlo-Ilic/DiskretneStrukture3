@@ -1,0 +1,1220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1085</width>
+    <height>817</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>60</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Graphicar</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Resorsi.qrc">
+    <normaloff>:/res/bitmap.png</normaloff>:/res/bitmap.png</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>256</width>
+    <height>256</height>
+   </size>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <layout class="QGridLayout" name="gridLayout"/>
+      </item>
+      <item>
+       <widget class="QGraphicsView" name="graphicsView">
+        <property name="font">
+         <font>
+          <family>Bahnschrift</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="backgroundBrush">
+         <brush brushstyle="VerPattern">
+          <color alpha="30">
+           <red>125</red>
+           <green>171</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </property>
+        <property name="foregroundBrush">
+         <brush brushstyle="HorPattern">
+          <color alpha="30">
+           <red>125</red>
+           <green>171</green>
+           <blue>200</blue>
+          </color>
+         </brush>
+        </property>
+        <property name="renderHints">
+         <set>QPainter::Antialiasing|QPainter::LosslessImageRendering|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+        </property>
+        <property name="dragMode">
+         <enum>QGraphicsView::NoDrag</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Bahnschrift</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QStackedWidget" name="stackedWidget_2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Sunken</enum>
+           </property>
+           <property name="midLineWidth">
+            <number>0</number>
+           </property>
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <widget class="QWidget" name="page">
+            <layout class="QFormLayout" name="formLayout_2">
+             <property name="leftMargin">
+              <number>2</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item row="0" column="0" colspan="2">
+              <layout class="QFormLayout" name="formLayout">
+               <property name="verticalSpacing">
+                <number>10</number>
+               </property>
+               <item row="0" column="0">
+                <widget class="QLabel" name="nazivCvoraLabel">
+                 <property name="text">
+                  <string>Naziv Cvora</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="nazivCvoraLineEdit"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="indeksCvoraLabel">
+                 <property name="text">
+                  <string>Indeks Cvora</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="indeksCvoraLineEdit">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="velicinaTekstaLabel">
+                 <property name="text">
+                  <string>Velicina teksta</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="velicinaTekstaSpinBox">
+                 <property name="suffix">
+                  <string> ms</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="debljinaPrstenaLabel">
+                 <property name="text">
+                  <string>Debljina Prstena</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QDoubleSpinBox" name="debljinaPrstenaDoubleSpinBox"/>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="velicinaCvoraLabel">
+                 <property name="text">
+                  <string>Velicina Cvora</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QDoubleSpinBox" name="velicinaCvoraDoubleSpinBox"/>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="ignorisiLabel">
+                 <property name="text">
+                  <string>Ignorisi</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QCheckBox" name="ignorisiCheckBox"/>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_2">
+            <layout class="QFormLayout" name="formLayout_10">
+             <property name="leftMargin">
+              <number>2</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
+             <item row="0" column="0" colspan="2">
+              <layout class="QFormLayout" name="formLayout_9">
+               <item row="0" column="0">
+                <widget class="QLabel" name="tipIviceLabel">
+                 <property name="text">
+                  <string>Tip Ivice</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="tipIviceComboBox">
+                 <item>
+                  <property name="text">
+                   <string>Obican</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Protocni</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="usmerenostLabel">
+                 <property name="text">
+                  <string>Usmerenost</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="usmerenostComboBox">
+                 <property name="iconSize">
+                  <size>
+                   <width>32</width>
+                   <height>32</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Neusmeren</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="Resorsi.qrc">
+                    <normaloff>:/res/neusmeren.png</normaloff>:/res/neusmeren.png</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>prvi</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="Resorsi.qrc">
+                    <normaloff>:/res/levo.png</normaloff>:/res/levo.png</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>drugi</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="Resorsi.qrc">
+                    <normaloff>:/res/desno.png</normaloff>:/res/desno.png</iconset>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="koristiTezineLabel">
+                 <property name="text">
+                  <string>Koristi Tezine</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QCheckBox" name="koristiTezineCheckBox"/>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="tezinaLabel">
+                 <property name="text">
+                  <string>Tezina</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QDoubleSpinBox" name="tezinaDoubleSpinBox">
+                 <property name="minimum">
+                  <double>-10000.000000000000000</double>
+                 </property>
+                 <property name="maximum">
+                  <double>100000.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="protokLabel">
+                 <property name="text">
+                  <string>Protok</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QDoubleSpinBox" name="protokDoubleSpinBox"/>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="dotokLabel">
+                 <property name="text">
+                  <string>Dotok</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QDoubleSpinBox" name="dotokDoubleSpinBox"/>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="velicinaTekstaLabel_2">
+                 <property name="text">
+                  <string>Velicina Teksta</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QSpinBox" name="velicinaTekstaSpinBox_2">
+                 <property name="suffix">
+                  <string> px</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="0">
+                <widget class="QLabel" name="ignorisiLabel_2">
+                 <property name="text">
+                  <string>Ignorisi</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="1">
+                <widget class="QCheckBox" name="ignorisiCheckBox_2"/>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="debljinaLinijeLabel">
+                 <property name="text">
+                  <string>Debljina Linije</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QDoubleSpinBox" name="debljinaLinijeDoubleSpinBox"/>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="title">
+            <string>Scena</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <layout class="QFormLayout" name="formLayout_5">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="skalaLabel">
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Skala</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="skalaDoubleSpinBox">
+              <property name="font">
+               <font>
+                <family>Bahnschrift</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="minimum">
+               <double>1.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>200.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>100.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <layout class="QFormLayout" name="formLayout_4"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="animacijaLabel">
+              <property name="text">
+               <string>Animacija</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="animacijaSpinBox">
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>10000</number>
+              </property>
+              <property name="value">
+               <number>60</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_2">
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="title">
+            <string>Algoritam</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <layout class="QFormLayout" name="formLayout_6">
+            <item row="2" column="0">
+             <layout class="QFormLayout" name="formLayout_3"/>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="metodaLabel">
+              <property name="text">
+               <string>Metoda</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="metodaComboBox">
+              <item>
+               <property name="text">
+                <string>BFS</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>DFS</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Flery</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Kruskal</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dijsktra</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Primov</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Edmonds</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ford Fulkerson</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Edmonds Carp</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QStackedWidget" name="stackedWidget">
+              <property name="currentIndex">
+               <number>6</number>
+              </property>
+              <widget class="QWidget" name="bfs_stranica">
+               <layout class="QFormLayout" name="formLayout_8">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <layout class="QFormLayout" name="formLayout_7">
+                  <property name="horizontalSpacing">
+                   <number>30</number>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="pocetniCvorLabel">
+                    <property name="text">
+                     <string>Pocetni Cvor</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="pocetniCvorLineEdit">
+                    <property name="readOnly">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="pisiNivoeLabel">
+                    <property name="text">
+                     <string>pisi nivoe</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QCheckBox" name="pisiNivoeCheckBox"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="dfs_stranica">
+               <layout class="QFormLayout" name="formLayout_12">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0" colspan="2">
+                 <layout class="QFormLayout" name="formLayout_11">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="pocetniCvorLabel_2">
+                    <property name="text">
+                     <string>Pocetni Cvor</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="pocetniCvorLineEdit_2">
+                    <property name="readOnly">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_3">
+               <layout class="QFormLayout" name="formLayout_14">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0" colspan="2">
+                 <layout class="QFormLayout" name="formLayout_13">
+                  <property name="verticalSpacing">
+                   <number>10</number>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="pocetniCvorLabel_3">
+                    <property name="text">
+                     <string>Pocetni Cvor</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="pocetniCvorLineEdit_3">
+                    <property name="readOnly">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="obeleziMostoveLabel">
+                    <property name="text">
+                     <string>Obelezi mostove</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QCheckBox" name="obeleziMostoveCheckBox"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="obeleziStepeneLabel">
+                    <property name="text">
+                     <string>Obelezi stepene</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QCheckBox" name="obeleziStepeneCheckBox"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="labelirajIviceLabel">
+                    <property name="text">
+                     <string>labeliraj ivice</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QCheckBox" name="labelirajIviceCheckBox"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_4">
+               <layout class="QFormLayout" name="formLayout_16">
+                <item row="0" column="0" colspan="2">
+                 <layout class="QFormLayout" name="formLayout_15">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelirajCvoroveLabel">
+                    <property name="text">
+                     <string>Labeliraj Cvorove</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QCheckBox" name="labelirajCvoroveCheckBox"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="labelirajIviceLabel_2">
+                    <property name="text">
+                     <string>Labeliraj ivice</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QCheckBox" name="labelirajIviceCheckBox_2"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_5">
+               <layout class="QFormLayout" name="formLayout_18">
+                <item row="0" column="0" colspan="2">
+                 <layout class="QFormLayout" name="formLayout_17">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="pocetniCvorLabel_4">
+                    <property name="text">
+                     <string>Pocetni Cvor</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="pocetniCvorComboBox"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="ciljniCvorLabel">
+                    <property name="text">
+                     <string>Ciljni Cvor</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QComboBox" name="ciljniCvorComboBox"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="obidjiCeoGrafLabel">
+                    <property name="text">
+                     <string>Obidji ceo graf</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QCheckBox" name="obidjiCeoGrafCheckBox"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="labelirajCvoroveDistancomLabel">
+                    <property name="text">
+                     <string>Labeliraj Cvorove distancom</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QCheckBox" name="labelirajCvoroveDistancomCheckBox"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_6">
+               <layout class="QFormLayout" name="formLayout_20">
+                <item row="0" column="0" colspan="2">
+                 <layout class="QFormLayout" name="formLayout_19">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="pocetniCvorLabel_5">
+                    <property name="text">
+                     <string>Pocetni Cvor</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="pocetniCvorComboBox_2"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="labelirajDistanceLabel">
+                    <property name="text">
+                     <string>Labeliraj Distance</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QCheckBox" name="labelirajDistanceCheckBox"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_9">
+               <layout class="QFormLayout" name="formLayout_26">
+                <item row="0" column="0">
+                 <layout class="QFormLayout" name="formLayout_25"/>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_7">
+               <layout class="QFormLayout" name="formLayout_24">
+                <item row="0" column="0">
+                 <layout class="QFormLayout" name="formLayout_23">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="tekucLabel">
+                    <property name="text">
+                     <string>Tekuc</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="tekucLineEdit"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_8">
+               <layout class="QFormLayout" name="formLayout_22">
+                <item row="0" column="0" colspan="2">
+                 <layout class="QFormLayout" name="formLayout_21">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="izvorLabel">
+                    <property name="text">
+                     <string>Izvor</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="izvorComboBox"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="ponorLabel">
+                    <property name="text">
+                     <string>Ponor</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QComboBox" name="ponorComboBox"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1085</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+    </font>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>true</bool>
+   </property>
+   <widget class="QMenu" name="menuUcitaj">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>156</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bahnschrift</family>
+      <pointsize>15</pointsize>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>Ucitaj</string>
+    </property>
+    <property name="separatorsCollapsible">
+     <bool>false</bool>
+    </property>
+    <addaction name="actionMatricu"/>
+    <addaction name="actionListu_povezanosti"/>
+   </widget>
+   <addaction name="menuUcitaj"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::TopToolBarArea</set>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>50</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionPusti"/>
+   <addaction name="actionStop"/>
+   <addaction name="actionPauziraj"/>
+   <addaction name="actionAnimacija"/>
+   <addaction name="actionOcisti"/>
+   <addaction name="separator"/>
+   <addaction name="actionBiranje"/>
+   <addaction name="actionCvorovi"/>
+   <addaction name="actionIvice"/>
+   <addaction name="separator"/>
+   <addaction name="actionIzbrisi"/>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget">
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+    </font>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Tekst info</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QTextBrowser" name="textBrowser">
+         <property name="font">
+          <font>
+           <family>Bahnschrift</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>Ocisti text kutiju</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionPusti">
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/play.jpg</normaloff>:/res/play.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>Pusti</string>
+   </property>
+   <property name="toolTip">
+    <string>Pusti algoritam da radi</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/stop.png</normaloff>:/res/stop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stop</string>
+   </property>
+   <property name="toolTip">
+    <string>Prekini trenutno izvrsavanje algoritma</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionPauziraj">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/pause.png</normaloff>:/res/pause.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pauziraj</string>
+   </property>
+   <property name="toolTip">
+    <string>Pauziraj izvrsavanje trenutnog algoritma</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionAnimacija">
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/animacija.png</normaloff>:/res/animacija.png</iconset>
+   </property>
+   <property name="text">
+    <string>Animacija</string>
+   </property>
+   <property name="toolTip">
+    <string>Pusti Animaciju za algoritam</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionBiranje">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/select.png</normaloff>:/res/select.png</iconset>
+   </property>
+   <property name="text">
+    <string>Biranje</string>
+   </property>
+   <property name="toolTip">
+    <string>Normalan rezim rada misa</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionIvice">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/ivice.png</normaloff>:/res/ivice.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ivice</string>
+   </property>
+   <property name="toolTip">
+    <string>Dodaj ivice u grafu</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionCvorovi">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/cvorovi.png</normaloff>:/res/cvorovi.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cvorovi</string>
+   </property>
+   <property name="toolTip">
+    <string>Dodaj cvorove u graf</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionMatricu">
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/matrix.png</normaloff>:/res/matrix.png</iconset>
+   </property>
+   <property name="text">
+    <string>Matricu</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionListu_povezanosti">
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/list.png</normaloff>:/res/list.png</iconset>
+   </property>
+   <property name="text">
+    <string>Listu povezanosti</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionIzbrisi">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/delete.png</normaloff>:/res/delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Izbrisi sve</string>
+   </property>
+   <property name="toolTip">
+    <string>Izbrisi trenutno izabran objekat</string>
+   </property>
+  </action>
+  <action name="actionOcisti">
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/ocisti.png</normaloff>:/res/ocisti.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ocisti</string>
+   </property>
+   <property name="toolTip">
+    <string>Ocisti scenu od animacija</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="Resorsi.qrc"/>
+ </resources>
+ <connections/>
+</ui>

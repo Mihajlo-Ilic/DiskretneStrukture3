@@ -1,0 +1,39 @@
+// Odsecanje i ogranicavanje
+graph {
+	nodesep=1
+	0 [label="max f = 8.2
+[3.8, 3.0]"]
+	1 [label="max f = 7.4
+[3.0, 2.6]"]
+	2 [label="max f = 7.6
+[4.0, 2.9]"]
+	3 [label="max f = 6.2
+[1.8, 2.0]"]
+	4 [label="Nema resenje" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	5 [label="max f = 4.0
+[4.0, 2.0]"]
+	5 [label="max f = 4.0
+[4.0, 2.0]" fillcolor="#258d99" fontcolor=white shape=box style="filled,bold"]
+	6 [label="Nema resenje" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	7 [label="max f = 5.4
+[1.0, 1.6]"]
+	8 [label="max f = 6.0
+[2.0, 2.0]"]
+	8 [label="max f = 6.0
+[2.0, 2.0]" fillcolor="#146321" fontcolor=white shape=box style="filled,bold"]
+	9 [label="max f = 4.0
+[0.0, 1.0]"]
+	9 [label="max f = 4.0
+[0.0, 1.0]" fillcolor="#258d99" fontcolor=white shape=box style="filled,bold"]
+	10 [label="Nema resenje" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	0 -- 1 [label="x0<=3"]
+	0 -- 2 [label="x0>=4"]
+	1 -- 3 [label="x1<=2"]
+	1 -- 4 [label="x1>=3"]
+	2 -- 5 [label="x1<=2"]
+	2 -- 6 [label="x1>=3"]
+	3 -- 7 [label="x0<=1"]
+	3 -- 8 [label="x0>=2"]
+	7 -- 9 [label="x1<=1"]
+	7 -- 10 [label="x1>=2"]
+}

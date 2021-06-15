@@ -1,0 +1,11 @@
+folder - odsecanje je metoda odsecanja i ogranicavanja bez crtanja potrebne biblioteke: termcolor
+	instalacija sa: pip3 install termcolor
+
+folder - odsecanje_crtanje je ista metoda samo i iscrta rad na kraju zahteva isto termcolor
+	ali zahteva i graphviz instalacija sa
+	pip3 install graphviz
+	ako ste na windowsu odete na sajt graphviza i skinete exe
+	ako ste na linuxu moze sa sudo apt-get install graphviz ja mislim
+
+folder - implicitno_prebrojavanje je metoda implicitnog prebrojavanja sa crtanjem i zahteva isto kao prethodni
+	

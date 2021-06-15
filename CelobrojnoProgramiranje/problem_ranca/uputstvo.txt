@@ -1,0 +1,19 @@
+Program se pokrece sa python3 putanja_do_fajla tip_metode skup
+
+ocekuje se format u fajlu
+C
+A b
+
+npr za problem:
+10x1 + 2x2 -1x3 + 3x4
+3x1 + 1x2 + 3x3 + 0x4 <= 4
+
+ocekuje se input:
+10 2 -1 3
+3 1 3 0 4
+
+ako zelimo da pokrenemo sa alg unapred u skupu Z radi se kao
+python3 test1.txt unapred Z
+
+ako zelimo da pokrenemo sa alg unazad u skupu 0-1 radi se kao
+python3 test1.txt unazad 0-1

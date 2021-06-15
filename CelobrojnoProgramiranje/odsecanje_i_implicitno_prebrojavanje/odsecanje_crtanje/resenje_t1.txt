@@ -1,0 +1,36 @@
+// Odsecanje i ogranicavanje
+graph {
+	nodesep=1
+	0 [label="min f = -4.5
+[3.5, 1.0, 0.0, 0.0]"]
+	1 [label="min f = -4.25
+[3.0, 1.25, 0.0, 0.75]"]
+	2 [label="min f = -4.0
+[4.0, -0.0, 1.0, 0.0]"]
+	2 [label="min f = -4.0
+[4.0, -0.0, 1.0, 0.0]" fillcolor="#146321" fontcolor=white shape=box style="filled,bold"]
+	3 [label="Nema resenje" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	4 [label="min f = -4.17
+[2.83, 1.33, 0.0, 1.0]"]
+	5 [label="min f = -3.75
+[2.0, 1.75, 0.0, 2.25]"]
+	6 [label="min f = -4.0
+[3.0, 1.0, 0.33, 1.0]"]
+	7 [label="min f = -3.0
+[2.0, 1.0, 1.0, 3.0]"]
+	7 [label="min f = -3.0
+[2.0, 1.0, 1.0, 3.0]" fillcolor="#258d99" fontcolor=white shape=box style="filled,bold"]
+	8 [label="Nema resenje" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	9 [label="Nema resenje" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	10 [label="Nema resenje" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+	0 -- 1 [label="x0<=3"]
+	0 -- 2 [label="x0>=4"]
+	1 -- 3 [label="x3<=0"]
+	1 -- 4 [label="x3>=1"]
+	4 -- 5 [label="x0<=2"]
+	4 -- 6 [label="x0>=3"]
+	5 -- 7 [label="x1<=1"]
+	5 -- 8 [label="x1>=2"]
+	6 -- 9 [label="x2<=0"]
+	6 -- 10 [label="x2>=1"]
+}

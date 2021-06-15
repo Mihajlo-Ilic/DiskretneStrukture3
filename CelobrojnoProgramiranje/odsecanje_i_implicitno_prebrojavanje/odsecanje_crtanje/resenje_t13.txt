@@ -1,0 +1,5 @@
+// Odsecanje i ogranicavanje
+graph {
+	nodesep=1
+	0 [label="Nema resenje" fillcolor="#8c230f" fontcolor=white shape=box style="filled,bold"]
+}
