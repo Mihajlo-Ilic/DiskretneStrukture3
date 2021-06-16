@@ -11,6 +11,8 @@
 
 #include <QThread>
 
+using namespace std;
+
 enum stanje_scene {Biranje , Dodaj_cvor , Dodaj_ivicu};
 
 class Cvor;

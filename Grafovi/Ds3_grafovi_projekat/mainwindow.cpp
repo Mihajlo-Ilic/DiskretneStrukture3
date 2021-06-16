@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Graf/graf.hpp"
+#include <cmath>
 
 #include <QMessageBox>
 

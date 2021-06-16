@@ -10,6 +10,7 @@
 #include <map>
 #include <QMessageBox>
 #include <numeric>
+#include <cmath>
 
 stanje_scene stanje = Biranje;
 
