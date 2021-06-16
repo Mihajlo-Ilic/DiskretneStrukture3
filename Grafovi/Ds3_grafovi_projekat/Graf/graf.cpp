@@ -2608,12 +2608,15 @@ void Algoritam::edmonds()
                              emit transp_ivicu(precrtavanje[cv],float(i)/float(brzina));
                          }
                     }
-
+                    std::set<Ivica*> za_b;
                     for(auto ig:f)
                         if(ig->prvi == vrh.cikl || ig->drugi == vrh.cikl){
                             f.insert(precrtavanje[ig]);
-                            f.erase(ig);
+                            za_b.insert(ig);
                         }
+
+                    for(auto ig:za_b)
+                        f.erase(ig);
 
                 }
 
@@ -2661,7 +2664,7 @@ void Algoritam::edmonds()
                         for(auto civ:vrh.iv){
                             for(auto iv:g->ivice)
                                 if(precrtavanje.find(iv)!=precrtavanje.end())
-                                if(iv->opacity()>0.5 && precrtavanje[iv]->usmeren_ka==civ->usmeren_ka && precrtavanje[iv]!=civ){
+                                if( precrtavanje[iv]->usmeren_ka==civ->usmeren_ka && precrtavanje[iv]!=civ){
                                     ukl.insert(civ);
                                     emit dodaj_text("grana {"+iv->prvi->naziv + ","+iv->drugi->naziv+"} ima suprotnu pa se ne dodaje");
                                 }
@@ -2687,8 +2690,10 @@ void Algoritam::edmonds()
 
 
                              for(auto cv:vrh.iv)
-                                 if(ukl.find(cv)!=ukl.end())
+                                 if(ukl.find(cv)!=ukl.end()){
                                     emit transp_ivicu(cv,0);
+                                     f.erase(cv);
+                                 }
                                  else
                                      f.insert(cv);
 
@@ -2697,11 +2702,15 @@ void Algoritam::edmonds()
                              }
                         }
 
+                        std::set<Ivica *> za_b;
                         for(auto ig:f)
                             if(ig->prvi == vrh.cikl || ig->drugi == vrh.cikl){
                                 f.insert(precrtavanje[ig]);
-                                f.erase(ig);
+                                za_b.insert(ig);
                             }
+
+                        for(auto ig:za_b)
+                            f.erase(ig);
 
                     }
 
@@ -2854,6 +2863,7 @@ void Algoritam::edmonds()
                         std::set<Ivica*> br;
                         std::set<Ivica*> dod;
                         Cikl_edmonds ckl;
+                        std::set<Ivica *> dodate;
 
                             for(auto vt:cikl.first){
 
@@ -2870,7 +2880,9 @@ void Algoritam::edmonds()
                                         dv->usmeren = Usmeren;
 
                                         dv->koristi_tezine = true;
-                                        dod.insert(dv);
+                                        if(e.find(iv.second)!=e.end())
+                                            dod.insert(dv);
+                                        dodate.insert(dv);
 
                                         precrtavanje[dv] = iv.second;
 
@@ -2912,9 +2924,10 @@ void Algoritam::edmonds()
                                     iv->koristi_tezine = true;
                                     emit dodaj_anim_ivicu(iv);
 
-
-                                    dod.insert(iv);
+                                    if(e.find(s)!=e.end())
+                                        dod.insert(iv);
                                     emit transp_ivicu(iv,0);
+                                    dodate.insert(iv);
 
                                     precrtavanje[iv] = s;
                                     ckl.ulazne.insert(iv);
@@ -2956,7 +2969,7 @@ void Algoritam::edmonds()
                                     emit transp_ivicu(e,0);
                                 }
 
-                                for(auto ed:dod)
+                                for(auto ed:dodate)
                                    emit transp_ivicu(ed,float(i)/float(brzina-1));
 
                                 emit transp_cvor_sve(cikl_cvor,float(i)/float(brzina-1));
@@ -3032,6 +3045,12 @@ void Algoritam::edmonds()
                 emit transp_ivicu(vt,0);
             }
         }
+        QString wwstr = c_set(w);
+        QString ffstr = iv_set(f);
+
+        emit dodaj_text("W = {"+wwstr+"}");
+        emit dodaj_text("F = {"+ffstr+"}");
+
         emit dodaj_text("Minimalno razapinjuce stablo je tezine "+QString::number(suma));
 
     }

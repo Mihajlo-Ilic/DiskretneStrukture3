@@ -69,7 +69,7 @@
          </brush>
         </property>
         <property name="renderHints">
-         <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+         <set>QPainter::Antialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
         </property>
         <property name="dragMode">
          <enum>QGraphicsView::NoDrag</enum>
@@ -866,7 +866,7 @@
      <x>0</x>
      <y>0</y>
      <width>1085</width>
-     <height>27</height>
+     <height>24</height>
     </rect>
    </property>
    <property name="font">
