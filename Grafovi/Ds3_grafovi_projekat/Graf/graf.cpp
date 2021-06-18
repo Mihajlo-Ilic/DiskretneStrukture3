@@ -330,6 +330,175 @@ void Graf::izbrisi_sve()
     cvorovi.clear();
 }
 
+#include <fstream>
+
+void Graf::sacuvaj_graf(string &putanja)
+{
+    std::ofstream file(putanja);
+    for(auto cv:cvorovi){
+        if(std::find(anim_cvorovi.begin(),anim_cvorovi.end(),cv)==anim_cvorovi.end()){
+            std::string str;
+            str += "-v ";
+            str += std::to_string(cv->pos().x());
+            str += " ";
+            str += std::to_string(cv->pos().y());
+            str += " ";
+            str += cv->naziv.toStdString();
+            file << str <<"\n";
+        }
+    }
+
+    for(auto ev:ivice){
+        if(std::find(anim_ivice.begin(),anim_ivice.end(),ev)==anim_ivice.end()){
+            std::string str;
+            str += "-e ";
+            unsigned ind_prvi = std::distance(cvorovi.begin(),std::find(cvorovi.begin(),cvorovi.end(),ev->prvi));
+            unsigned ind_drugi = std::distance(cvorovi.begin(),std::find(cvorovi.begin(),cvorovi.end(),ev->drugi));
+
+            str += std::to_string(ind_prvi);
+            str += " ";
+            str += std::to_string(ind_drugi);
+            str += " ";
+
+            if(ev->usmeren_ka!=nullptr){
+                unsigned ind_usmeren = std::distance(cvorovi.begin(),std::find(cvorovi.begin(),cvorovi.end(),ev->usmeren_ka));
+                str += std::to_string(ind_usmeren);
+                str += " ";
+            } else {
+                str += "null ";
+            }
+
+            if(ev->tip == Protocna){
+                str += "p ";
+                if(ev->koristi_tezine){
+                    str += "t ";
+                } else
+                    str += "n ";
+                str += std::to_string(ev->dotok) + "/" + std::to_string(ev->protok);
+            } else {
+                str += "o ";
+                if(ev->koristi_tezine){
+                    str += "t ";
+                } else
+                    str += "n ";
+                str += std::to_string(ev->tezina);
+            }
+
+            file << str << "\n";
+
+        }
+    }
+
+    file.close();
+
+}
+
+void Graf::ucitaj_graf(string &putanja)
+{
+    izbrisi_sve();
+    std::ifstream file(putanja);
+    if(file.is_open()){
+        std::string linija;
+        while (std::getline(file,linija)) {
+            if(linija[1]=='v'){
+                float x;
+                float y;
+
+                char cime[50];
+
+                sscanf(linija.c_str(),"%*s %f %f %s",
+                       &x,&y,cime);
+                std::string ime = std::string(cime);
+                Cvor *c = new Cvor();
+                dodaj_cvor(c);
+                c->naziv = QString::fromStdString(ime);
+                c->setPos(QPointF(x,y));
+                c->tekst.setText(c->naziv);
+                c->azuriraj_poziciju_ivica();
+
+            } else {
+                unsigned pprvi;
+                unsigned ddrugi;
+
+
+                char cusmeren[50];
+                char ctip[50];
+                char ctt[50];
+                char ctezina[50];
+
+                sscanf(linija.c_str(),"%*s %u %u %s %s %s %s",
+                       &pprvi,&ddrugi,cusmeren,ctip,ctt,ctezina);
+
+                std::string usmeren = std::string(cusmeren);
+                std::string tip = std::string(ctip);
+                std::string tt = std::string(ctt);
+                std::string tezina = std::string(ctezina);
+
+
+                Ivica *iv = new Ivica(cvorovi[pprvi],cvorovi[ddrugi]);
+                iv->usmeren = Neusmeren;
+                iv->tip=Obicna;
+                iv->koristi_tezine = false;
+                iv->usmeren_ka = nullptr;
+
+                addItem(iv);
+                addItem(&(iv->anim_line));
+                addItem(&(iv->tekst));
+                addItem(&iv->strelica);
+
+                QPen p;
+                p.setWidth(5);
+                iv->setPen(p);
+
+                if(usmeren != "null"){
+                    unsigned ind = std::stoul(usmeren);
+                    iv->usmeren = Usmeren;
+                    iv->usmeren_ka = cvorovi[ind];
+
+                }
+
+                if(pprvi==ddrugi)
+                    iv->usmeren = Sam_u_sebe;
+
+                if(tip == "p"){
+                    iv->tip=Protocna;
+
+                    iv->koristi_tezine = true;
+                }
+
+                if(tt == "t"){
+                    iv->koristi_tezine = true;
+                    iv->tekst.show();
+                }
+
+                if(tip == "o"){
+                    float tez  = stof(tezina);
+                    iv->tezina = tez;
+                    iv->tekst.setText(QString::number(iv->tezina));
+                } else {
+                    float dot;
+                    float prot;
+                    sscanf(tezina.c_str(),"%f/%f",&dot,&prot);
+                    iv->dotok = dot;
+                    iv->protok = prot;
+                    iv->tekst.setText(QString::number(iv->dotok)+"/"+QString::number(iv->protok));
+                }
+
+
+                ivice.push_back(iv);
+
+
+                iv->roditelj = this;
+
+
+                iv->azuriraj_poziciju();
+
+            }
+        }
+    }
+    file.close();
+}
+
 Cvor::Cvor():QGraphicsEllipseItem(0,0,50,50)
 {
     QPen p;
@@ -541,7 +710,7 @@ Ivica::Ivica(Cvor *prvi, Cvor *drugi)
     f.setPointSize(15);
     tekst.setPen(p);
     tekst.setFont(f);
-
+    azuriraj_poziciju();
 }
 
 void Ivica::mousePressEvent(QGraphicsSceneMouseEvent *e)
@@ -594,6 +763,8 @@ void Ivica::azuriraj_poziciju()
         pp.moveTo(x1 + dx*25 , y1 + dy*25);
         pp.lineTo(x2 - dx*25 , y2 - dy*25);
         setPath(pp);
+
+
 
         if(usmeren == Usmeren && usmeren_ka!=nullptr){
 
@@ -679,10 +850,11 @@ void Ivica::azuriraj_poziciju()
         strelica.setPolygon(pol);
         show();
     }
-
-    if(koristi_tezine)
-        postavi_tekst(tekst.text());
     show();
+    if(koristi_tezine){
+        postavi_tekst(tekst.text());
+
+    }
 
     if(izabrana_ivica == this){
         teg->azuriraj_poziciju(this);
@@ -701,7 +873,7 @@ void Ivica::postavi_tekst(QString txt)
     float width = tekst.boundingRect().width();
     float height = tekst.boundingRect().height();
 
-    if(usmeren != Sam_u_sebe){
+    if(usmeren != Sam_u_sebe && prvi!=drugi){
 
         float x1 = path().elementAt(0).x;
         float y1 = path().elementAt(0).y;
@@ -2367,7 +2539,7 @@ bool jeste_cikl(Cvor *koren,std::set<Ivica *>& grane){
     stek.push(koren);
     obidjeni.insert(koren);
 
-    while (obidjeni.empty()==false) {
+    while (stek.empty()==false) {
         auto vrh = stek.top();
         stek.pop();
 
@@ -2561,62 +2733,91 @@ void Algoritam::edmonds()
                     auto vrh = ciklovi.top();
                     ciklovi.pop();
 
-
-
                     emit dodaj_text("rasparcavamo supercvor "+vrh.cikl->naziv);
 
-                    if(animacija)
-                    for(int i=0;i<brzina;i++){
-                         QThread::msleep(5);
-                         emit anim_boji_cvor(vrh.cikl,QColor::fromRgb(0,0,0), QColor::fromRgb(200,0,0),float(i)/float(brzina-1));
-                    }
+                    std::set<Ivica*> nf;
+                    //racunamo koje ivice mogu da se otkriju
+                    for(auto iv:vrh.iv)
+                        emit transp_ivicu(iv,1);
 
-                    for(auto civ:vrh.iv){
-                        for(auto iv:g->ivice)
-                            if(iv->opacity()>0.5 && iv->usmeren_ka==civ->usmeren_ka && iv!=civ){
-                                ukl.insert(civ);
-                                emit dodaj_text("grana {"+iv->prvi->naziv + ","+iv->drugi->naziv+"} ima suprotnu pa se ne dodaje");
+                    for(auto sus:vrh.cikl->nadji_ed_susede())
+                        emit transp_ivicu(precrtavanje[sus.second],1);
+
+
+                    //ako postoji ivica koja ulazi u isti cvor kao ona a da je u f nmzemo nju da koristimo
+                        for(auto sus:vrh.cikl->nadji_ed_susede()){
+                            if(sus.second->usmeren_ka==vrh.cikl && f.find(sus.second)!=f.end()){
+                                for(auto iv:vrh.iv)
+                                    if(iv->usmeren_ka == precrtavanje[sus.second]->usmeren_ka){
+                                        emit dodaj_text("grana ("+iv->prvi->naziv+"->"+iv->drugi->naziv+") ima suprotnu pa se ne dodaje");
+                                        nf.insert(iv);
+                                    }
                             }
-                    }
+                        }
+                    for(auto iv:vrh.iv)
+                            emit transp_ivicu(iv,0);
+
+                    for(auto sus:vrh.cikl->nadji_ed_susede())
+                            emit transp_ivicu(precrtavanje[sus.second],0);
 
 
-                    if(animacija)
-                    for(int i=0;i<brzina;i++){
-                         QThread::msleep(5);
-                         emit transp_cvor_sve(vrh.cikl,1.0-float(i)/float(brzina-1));
-                         for(auto iv:g->ivice)
-                             if(iv->usmeren_ka==vrh.cikl)
-                                 emit transp_ivicu(iv,1.0-float(i)/float(brzina-1));
-                         for(auto cv:vrh.cv){
-                             emit transp_cvor_sve(cv,float(i)/float(brzina));
-                             emit boji_cvor(cv,QColor::fromRgb(0, 0, 0));
-                         }
 
 
-                         auto sus=vrh.cikl->nadji_par_susede();
-                         for(auto s:sus)
-                                emit transp_ivicu(s.second,1-float(i)/float(brzina-1));
+                    if(animacija){
+                        QRectF rc = vrh.cikl->rect();
 
+                        for(int i=0;i<brzina;i++){
+                             QThread::msleep(5);
+                             emit anim_boji_cvor(vrh.cikl,QColor::fromRgb(0,0,0), QColor::fromRgb(200,0,0),float(i)/float(brzina-1));
+                             emit okviri_cvor(vrh.cikl,rc,10,float(i)/float((brzina-1)/2));
+                        }
+                        emit okviri_cvor(vrh.cikl,rc,0,0);
 
-                         for(auto cv:vrh.iv)
-                             if(ukl.find(cv)!=ukl.end())
-                                emit transp_ivicu(cv,0);
-                             else
-                                 f.insert(cv);
+                        //otkrivamo sve ostale cvorove
 
-                         for(auto cv:vrh.ulazne){
-                             emit transp_ivicu(precrtavanje[cv],float(i)/float(brzina));
-                         }
-                    }
-                    std::set<Ivica*> za_b;
-                    for(auto ig:f)
-                        if(ig->prvi == vrh.cikl || ig->drugi == vrh.cikl){
-                            f.insert(precrtavanje[ig]);
-                            za_b.insert(ig);
+                        for(int i=0;i<brzina;i++){
+                             QThread::msleep(5);
+
+                             emit transp_cvor_sve(vrh.cikl,1-float(i)/float((brzina-1)));
+                             for(auto vt:vrh.cikl->nadji_ed_susede())
+                                emit transp_ivicu(vt.second,1-float(i)/float((brzina-1)));
+
                         }
 
-                    for(auto ig:za_b)
-                        f.erase(ig);
+                        for(int i=0;i<brzina;i++){
+                             QThread::msleep(5);
+                             for(auto vt:vrh.cv)
+                                emit transp_cvor_sve(vt,float(i)/float((brzina-1)));
+                             for(auto vt:vrh.iv)
+                                emit transp_ivicu(vt,float(i)/float((brzina-1)));
+                             for(auto vt:vrh.cikl->nadji_ed_susede())
+                                emit transp_ivicu(precrtavanje[vt.second],float(i)/float((brzina-1)));
+                        }
+
+                        for(int i=0;i<brzina;i++){
+                             QThread::msleep(5);
+                             for(auto vt:nf)
+                                emit transp_ivicu(vt,1-float(i)/float((brzina-1)));
+                        }
+
+                    }
+
+                    for(auto vt:vrh.cikl->nadji_ed_susede())
+                       if(f.find(vt.second)!=f.end()){
+                           f.erase(vt.second);
+                           f.insert(precrtavanje[vt.second]);
+                       }
+
+                    for(auto vt:vrh.iv)
+                        if(nf.find(vt)==nf.end())
+                              f.insert(vt);
+
+                    w.erase(vrh.cikl);
+
+                    for(auto vrr:vrh.cv)
+                        w.insert(vrr);
+
+
 
                 }
 
@@ -2655,62 +2856,89 @@ void Algoritam::edmonds()
 
                         emit dodaj_text("rasparcavamo supercvor "+vrh.cikl->naziv);
 
-                        if(animacija)
-                        for(int i=0;i<brzina;i++){
-                             QThread::msleep(5);
-                             emit anim_boji_cvor(vrh.cikl,QColor::fromRgb(0,0,0), QColor::fromRgb(200,0,0),float(i)/float(brzina-1));
-                        }
+                        std::set<Ivica*> nf;
+                        //racunamo koje ivice mogu da se otkriju
+                        for(auto iv:vrh.iv)
+                            emit transp_ivicu(iv,1);
 
-                        for(auto civ:vrh.iv){
-                            for(auto iv:g->ivice)
-                                if(precrtavanje.find(iv)!=precrtavanje.end())
-                                if( precrtavanje[iv]->usmeren_ka==civ->usmeren_ka && precrtavanje[iv]!=civ){
-                                    ukl.insert(civ);
-                                    emit dodaj_text("grana {"+iv->prvi->naziv + ","+iv->drugi->naziv+"} ima suprotnu pa se ne dodaje");
+                        for(auto sus:vrh.cikl->nadji_ed_susede())
+                            emit transp_ivicu(precrtavanje[sus.second],1);
+
+
+                        //ako postoji ivica koja ulazi u isti cvor kao ona a da je u f nmzemo nju da koristimo
+                            for(auto sus:vrh.cikl->nadji_ed_susede()){
+                                if(sus.second->usmeren_ka==vrh.cikl && f.find(sus.second)!=f.end()){
+                                    for(auto iv:vrh.iv)
+                                        if(iv->usmeren_ka == precrtavanje[sus.second]->usmeren_ka){
+                                            emit dodaj_text("grana ("+iv->prvi->naziv+"->"+iv->drugi->naziv+") ima suprotnu pa se ne dodaje");
+                                            nf.insert(iv);
+                                        }
                                 }
-                        }
+                            }
+                        for(auto iv:vrh.iv)
+                                emit transp_ivicu(iv,0);
+
+                        for(auto sus:vrh.cikl->nadji_ed_susede())
+                                emit transp_ivicu(precrtavanje[sus.second],0);
 
 
-                        if(animacija)
-                        for(int i=0;i<brzina;i++){
-                             QThread::msleep(5);
-                             emit transp_cvor_sve(vrh.cikl,1.0-float(i)/float(brzina-1));
-                             for(auto iv:g->ivice)
-                                 if(iv->usmeren_ka==vrh.cikl)
-                                     emit transp_ivicu(iv,1.0-float(i)/float(brzina-1));
-                             for(auto cv:vrh.cv){
-                                 emit transp_cvor_sve(cv,float(i)/float(brzina));
-                                 emit boji_cvor(cv,QColor::fromRgb(0, 0, 0));
-                             }
 
 
-                             auto sus=vrh.cikl->nadji_par_susede();
-                             for(auto s:sus)
-                                    emit transp_ivicu(s.second,1-float(i)/float(brzina-1));
+                        if(animacija){
+                            QRectF rc = vrh.cikl->rect();
 
+                            for(int i=0;i<brzina;i++){
+                                 QThread::msleep(5);
+                                 emit anim_boji_cvor(vrh.cikl,QColor::fromRgb(0,0,0), QColor::fromRgb(200,0,0),float(i)/float(brzina-1));
+                                 emit okviri_cvor(vrh.cikl,rc,10,float(i)/float((brzina-1)/2));
+                            }
+                            emit okviri_cvor(vrh.cikl,rc,0,0);
 
-                             for(auto cv:vrh.iv)
-                                 if(ukl.find(cv)!=ukl.end()){
-                                    emit transp_ivicu(cv,0);
-                                     f.erase(cv);
-                                 }
-                                 else
-                                     f.insert(cv);
+                            //otkrivamo sve ostale cvorove
 
-                             for(auto cv:vrh.ulazne){
-                                 emit transp_ivicu(precrtavanje[cv],float(i)/float(brzina));
-                             }
-                        }
+                            for(int i=0;i<brzina;i++){
+                                 QThread::msleep(5);
 
-                        std::set<Ivica *> za_b;
-                        for(auto ig:f)
-                            if(ig->prvi == vrh.cikl || ig->drugi == vrh.cikl){
-                                f.insert(precrtavanje[ig]);
-                                za_b.insert(ig);
+                                 emit transp_cvor_sve(vrh.cikl,1-float(i)/float((brzina-1)));
+                                 for(auto vt:vrh.cikl->nadji_ed_susede())
+                                    emit transp_ivicu(vt.second,1-float(i)/float((brzina-1)));
+
                             }
 
-                        for(auto ig:za_b)
-                            f.erase(ig);
+                            for(int i=0;i<brzina;i++){
+                                 QThread::msleep(5);
+                                 for(auto vt:vrh.cv)
+                                    emit transp_cvor_sve(vt,float(i)/float((brzina-1)));
+                                 for(auto vt:vrh.iv)
+                                    emit transp_ivicu(vt,float(i)/float((brzina-1)));
+                                 for(auto vt:vrh.cikl->nadji_ed_susede())
+                                    emit transp_ivicu(precrtavanje[vt.second],float(i)/float((brzina-1)));
+                            }
+
+                            for(int i=0;i<brzina;i++){
+                                 QThread::msleep(5);
+                                 for(auto vt:nf)
+                                    emit transp_ivicu(vt,1-float(i)/float((brzina-1)));
+                            }
+
+                        }
+
+                        for(auto vt:vrh.cikl->nadji_ed_susede())
+                           if(f.find(vt.second)!=f.end()){
+                               f.erase(vt.second);
+                               f.insert(precrtavanje[vt.second]);
+                           }
+
+                        for(auto vt:vrh.iv)
+                            if(nf.find(vt)==nf.end())
+                                  f.insert(vt);
+
+                        w.erase(vrh.cikl);
+
+                        for(auto vrr:vrh.cv)
+                            w.insert(vrr);
+
+
 
                     }
 
@@ -2733,6 +2961,10 @@ void Algoritam::edmonds()
                         }
                         emit stavi_tekst_cvor(n,QString::number( indeksi[n]));
                     }
+
+                    for(int i=0;i<brzina;i++)
+                         QThread::msleep(5);
+
                     for(int i=0;i<brzina;i++){
                          QThread::msleep(5);
                         for(auto n:niz){
@@ -2755,8 +2987,8 @@ void Algoritam::edmonds()
                     float mn = 100000;
                     Ivica *mc = ulazne[0];
                     for(auto c:ulazne)
-                        if(mn>c->tezina && c->opacity()>=0.5){
-                            mn = c->tezina;
+                        if(mn>c->tekst.text().toFloat() && c->opacity()>=0.5){
+                            mn = c->tekst.text().toFloat();
                             mc = c;
                         }
                     e.insert(mc);
@@ -2839,7 +3071,25 @@ void Algoritam::edmonds()
 
                         emit stavi_tekst_cvor(cikl_cvor,"c"+QString::number(cnum));
                         cnum+=1;
-                        emit pomeri_cvor(cikl_cvor,cikl.first[0]->pos());
+
+
+                        Cvor *poz = cikl.first[0];
+                        int num = 0;
+                        for(auto cc:cikl.first){
+                            auto susedi = cc->nadji_ed_susede();
+                            int n= 0;
+                            for(auto sus:susedi)
+                                if(std::find(cikl.first.begin(),cikl.first.end(),sus.first)==cikl.first.end()
+                                        && sus.second->opacity()>0.5)
+                                    n++;
+                            if(n>num){
+                                num=n;
+                                poz = cc;
+                            }
+
+                        }
+
+                        emit pomeri_cvor(cikl_cvor,poz->pos());
 
                         emit transp_cvor_sve(cikl_cvor,0);
 
@@ -2865,88 +3115,67 @@ void Algoritam::edmonds()
                         Cikl_edmonds ckl;
                         std::set<Ivica *> dodate;
 
-                            for(auto vt:cikl.first){
+                        for(auto vert:cycv){
+                            auto susedi = vert->nadji_ed_susede();
 
-                                auto neulazne = vt->nadji_par_susede();
-                                for(auto iv:neulazne){
-                                    if(cycv.find(iv.second->usmeren_ka)==cycv.end()){
-                                        Ivica *dv = new Ivica(iv.second->usmeren_ka,cikl_cvor);
+                            for(auto sus:susedi)
+                                if(sus.second->opacity()>0.8 && cycv.find(sus.first)==cycv.end()){
+                                    //ako sused nije deo cikla i nije sakriven
+                                    Ivica *nv = new Ivica(sus.first,cikl_cvor);
+                                    nv->usmeren = Usmeren;
+                                    nv->koristi_tezine = true;
+                                    precrtavanje[nv] = sus.second;
+                                    br.insert(sus.second);
 
-                                        std::cout<<iv.second->usmeren_ka->naziv.toStdString()<<std::endl;
+                                    if(cycv.find(sus.second->usmeren_ka)==cycv.end()){
+                                        //ako nije usmeren ka ciklu
+                                        nv->usmeren_ka = sus.first;
+                                        nv->tezina = sus.second->tezina;
+                                    } else {
+                                        //ako je usmerena ka ciklu moramo da je azuriramo
+                                        nv->usmeren_ka = cikl_cvor;
+                                        ckl.ulazne.insert(nv);
 
-                                        emit dodaj_anim_ivicu(dv);
-                                        dv->tezina = iv.second->tezina;
-                                        dv->usmeren_ka = iv.second->usmeren_ka;
-                                        dv->usmeren = Usmeren;
+                                        float m= -100000;
+                                        auto ulazne = vrati_ulazne(sus.second->usmeren_ka);
 
-                                        dv->koristi_tezine = true;
-                                        if(e.find(iv.second)!=e.end())
-                                            dod.insert(dv);
-                                        dodate.insert(dv);
+                                        for(auto ul:ulazne)
+                                            if(cycv.find(ul->prvi)!=cycv.end() && cycv.find(ul->prvi)!=cycv.end()){
+                                                if(ul->tekst.text().toFloat()>m)
+                                                    m=ul->tekst.text().toFloat();
+                                            }
+                                        if(m!=-100000)
+                                            nv->tezina = sus.second->tekst.text().toFloat() - m;
+                                        else
+                                            nv->tezina = -1;
 
-                                        precrtavanje[dv] = iv.second;
 
-                                        emit transp_ivicu(dv,0);
-                                        emit stavi_tekst_ivica(dv,QString::number(dv->tezina));
+                                        if(animacija && m!= -100000){
+                                            for(int i=0;i<brzina;i++){
+                                                QThread::msleep(5);
+                                            }
+                                            emit stavi_tekst_ivica(sus.second,sus.second->tekst.text()+"-"+QString::number(m));
+                                            for(int i=0;i<brzina;i++){
+                                                QThread::msleep(5);
+                                            }
+                                            emit stavi_tekst_ivica(sus.second,
+                                                                   QString::number(sus.second->tekst.text().toFloat()-m));
+                                        }
 
                                     }
+
+
+                                    dodate.insert(nv);
+                                    if(e.find(sus.second)!=e.end())
+                                        dod.insert(nv);
+
+
+                                    emit dodaj_anim_ivicu(nv);
+                                    emit stavi_tekst_ivica(nv,QString::number(nv->tezina));
+                                    emit transp_ivicu(nv,0);
                                 }
 
-                                auto susedi = vrati_ulazne(vt);
-                                for(auto s:susedi){
-                                if(cycv.find(s->prvi)==cycv.end() ||
-                                    cycv.find(s->drugi)==cycv.end()){
-
-                                    float m = -10000;
-                                    for(auto et:cikl.second){
-                                        if(et->usmeren_ka == vt && et->tezina>m)
-                                            m=et->tezina;
-
-                                    }
-
-                                    br.insert(s);
-                                    Cvor *fr = nullptr;
-
-
-
-                                    if(s->usmeren_ka == s->prvi)
-                                        fr = s->drugi;
-                                    else fr = s->prvi;
-
-                                    emit dodaj_text("azuriramo granu {"+fr->naziv+","+cikl_cvor->naziv+"} = "+
-                                                    " "+QString::number(s->tezina) +" - "+QString::number(m));
-
-                                    Ivica *iv = new Ivica(fr,cikl_cvor);
-                                    iv->usmeren_ka = cikl_cvor;
-                                    iv->usmeren = Usmeren;
-                                    iv->tezina = s->tezina - m;
-
-                                    iv->koristi_tezine = true;
-                                    emit dodaj_anim_ivicu(iv);
-
-                                    if(e.find(s)!=e.end())
-                                        dod.insert(iv);
-                                    emit transp_ivicu(iv,0);
-                                    dodate.insert(iv);
-
-                                    precrtavanje[iv] = s;
-                                    ckl.ulazne.insert(iv);
-
-
-                                    if(animacija){
-                                          for(int i=0;i<brzina;i++){
-                                             QThread::msleep(5);
-                                          emit stavi_tekst_ivica(s,QString::number(s->tezina)+"-"+
-                                                               QString::number(m));
-                                          }
-                                          QThread::msleep(5);
-                                          emit stavi_tekst_ivica(s,QString::number(s->tezina));
-                                          emit stavi_tekst_ivica(iv,QString::number(iv->tezina));
-                                    }
-                                }
-                            }
-
-                            }
+                        }
 
 
 
@@ -2994,6 +3223,8 @@ void Algoritam::edmonds()
 
                         emit dodaj_text("Idemo na Korak 4");
                         curr = cikl_cvor;
+                        emit transp_cvor_sve(cikl_cvor,1);
+
                         continue;
                     }
                     emit dodaj_text("Korak 7:");
@@ -3031,6 +3262,7 @@ void Algoritam::edmonds()
         }
         float suma = 0;
         for(auto vt:g->ivice){
+            emit stavi_tekst_ivica(vt,QString::number(vt->tezina));
             if(std::find(g->anim_ivice.begin(),g->anim_ivice.end(),vt)==g->anim_ivice.end()){
                 if(f.find(vt)!=f.end()){
                     vt->anim_line.hide();

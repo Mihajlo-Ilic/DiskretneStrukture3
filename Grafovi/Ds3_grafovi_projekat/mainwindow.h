@@ -94,6 +94,10 @@ private slots:
     void pomeri_cvor(Cvor *c,QPointF p);
     void on_tipIviceComboBox_currentIndexChanged(int index);
 
+    void on_actionUcitaj_graf_triggered();
+
+    void on_actionSacuvaj_graf_triggered();
+
 private:
     Ui::MainWindow *ui;
 

@@ -16,6 +16,11 @@
     <height>60</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <family>DejaVu Sans</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Graphicar</string>
   </property>
@@ -916,6 +921,9 @@
     </property>
     <addaction name="actionMatricu"/>
     <addaction name="actionListu_povezanosti"/>
+    <addaction name="separator"/>
+    <addaction name="actionSacuvaj_graf"/>
+    <addaction name="actionUcitaj_graf"/>
    </widget>
    <addaction name="menuUcitaj"/>
   </widget>
@@ -1165,7 +1173,7 @@
    </property>
    <property name="font">
     <font>
-     <family>Bahnschrift</family>
+     <family>DejaVu Sans</family>
      <pointsize>12</pointsize>
     </font>
    </property>
@@ -1180,7 +1188,7 @@
    </property>
    <property name="font">
     <font>
-     <family>Bahnschrift</family>
+     <family>DejaVu Sans</family>
      <pointsize>12</pointsize>
     </font>
    </property>
@@ -1210,6 +1218,29 @@
    </property>
    <property name="toolTip">
     <string>Ocisti scenu od animacija</string>
+   </property>
+  </action>
+  <action name="actionSacuvaj_graf">
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/save.png</normaloff>:/res/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sacuvaj graf</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>DejaVu Sans</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionUcitaj_graf">
+   <property name="icon">
+    <iconset resource="Resorsi.qrc">
+     <normaloff>:/res/folder.png</normaloff>:/res/folder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ucitaj graf</string>
    </property>
   </action>
  </widget>

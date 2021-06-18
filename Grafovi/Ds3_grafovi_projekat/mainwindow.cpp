@@ -3,6 +3,7 @@
 #include "Graf/graf.hpp"
 #include <cmath>
 
+#include <QFileDialog>
 #include <QMessageBox>
 
 Graf *sc;
@@ -574,7 +575,6 @@ void MainWindow::dodaj_anim_ivicu(Ivica *i)
 {
     sc->ivice.push_back(i);
     sc->anim_ivice.push_back(i);
-    i->azuriraj_poziciju();
 
     i->roditelj = sc;
 
@@ -607,5 +607,19 @@ void MainWindow::on_tipIviceComboBox_currentIndexChanged(int index)
         izabrana_ivica->postavi_tekst(QString::number(izabrana_ivica->tezina));
         izabrana_ivica->azuriraj_poziciju();
     }
+}
+
+
+void MainWindow::on_actionUcitaj_graf_triggered()
+{
+    std::string putanja = QFileDialog::getOpenFileName(nullptr,"Izaberite graf").toStdString();
+    sc->ucitaj_graf(putanja);
+}
+
+
+void MainWindow::on_actionSacuvaj_graf_triggered()
+{
+    std::string putanja = QFileDialog::getSaveFileName(this,"Sacuvaj fajl").toStdString();
+    sc->sacuvaj_graf(putanja);
 }
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.15.1, 2021-06-16T22:11:04. -->
+<!-- Written by QtCreator 4.15.1, 2021-06-18T17:04:16. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{cfb3fc3e-a442-4027-8e52-718ebcde7b50}</value>
+  <value type="QByteArray">{ea5c0966-0d47-4bbc-8125-b7efa44272ec}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -97,8 +97,8 @@
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/mihajlo/Documents/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Debug</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/mihajlo/Documents/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/miki/Desktop/Projekti/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/miki/Desktop/Projekti/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -135,8 +135,8 @@
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/mihajlo/Documents/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Release</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/mihajlo/Documents/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/miki/Desktop/Projekti/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/miki/Desktop/Projekti/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -175,8 +175,8 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/mihajlo/Documents/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Profile</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/mihajlo/Documents/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/miki/Desktop/Projekti/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/miki/Desktop/Projekti/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -292,14 +292,14 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/mihajlo/Documents/DiskretneStrukture3/Grafovi/Ds3_grafovi_projekat/Ds3_projekat.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/mihajlo/Documents/DiskretneStrukture3/Grafovi/Ds3_grafovi_projekat/Ds3_projekat.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/miki/Desktop/Projekti/DiskretneStrukture3/Grafovi/Ds3_grafovi_projekat/Ds3_projekat.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/miki/Desktop/Projekti/DiskretneStrukture3/Grafovi/Ds3_grafovi_projekat/Ds3_projekat.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/mihajlo/Documents/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Debug</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/miki/Desktop/Projekti/DiskretneStrukture3/Grafovi/build-Ds3_projekat-Desktop_Qt_6_1_1_GCC_64bit-Debug</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

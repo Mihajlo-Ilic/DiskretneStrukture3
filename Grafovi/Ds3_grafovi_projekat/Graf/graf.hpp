@@ -94,6 +94,7 @@ public:
     std::vector<std::pair<Cvor *,Ivica *>> nadji_ed_susede();
     std::vector<std::pair<Cvor *, Ivica *> >nadji_par_susede2();
 
+
 };
 
 class Graf :public QGraphicsScene
@@ -125,6 +126,10 @@ public:
     void ocisti_animacije();
 
     void izbrisi_sve();
+
+    void sacuvaj_graf(std::string& putanja);
+
+    void ucitaj_graf(std::string& putanja);
 
 signals:
   void sig_nista();

@@ -18,5 +18,7 @@
         <file>bitmap.png</file>
         <file>tegici.png</file>
         <file>protok.png</file>
+        <file>folder.png</file>
+        <file>save.png</file>
     </qresource>
 </RCC>
